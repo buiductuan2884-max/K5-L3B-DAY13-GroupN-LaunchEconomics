@@ -27,15 +27,20 @@ Từ dữ liệu `src/logix_runs.csv` (1.624 lần chạy) và `src/logix_reques
 - Số việc thành công (`ket_qua == 'thanh_cong'`): `978` yêu cầu
 - **Chi phí mỗi việc thành công:** `4.373.585,13 / 978 = 4.471,97 đ` ($\approx$ **4.472 đ** [simulated])
 
-### Nhiệm vụ D (`report/team/pilot_plan.yaml`)
+### Đối chiếu A2 với bài làm của MinhNGD76
+- Đã pull bản merge Nhiệm vụ A từ `main` (commit `4f086b4`) và đối chiếu [bang_chi_phi.md](bang_chi_phi.md) với phần tính tay:
+  - Token `245.585 đ`, Tool `84.000 đ`, Xem lại `1.780.000 đ` [simulated], Làm lại `2.264.000 đ` [simulated], Tổng `4.373.585 đ`, Số việc thành công `978`, Chi phí mỗi việc thành công `4.472 đ` [simulated]. Kết quả khớp 100% (sai số 0%).
+
+### Nhiệm vụ D (`src/lab13.py` và `report/team/pilot_plan.yaml`)
+- Bổ sung code tính 5 câu D1 và tỉ lệ `mo_lai_trong_7_ngay` hiện tại vào `src/lab13.py` (phần CP4).
 - Tính 5 câu D1: chia theo yêu cầu cần `1.251` yêu cầu/nhóm; chia theo nhân viên ($m=75$) cần `3.103` yêu cầu/nhóm (42 người/nhóm, vượt quá 40 nhân viên hiện có); giới hạn 20 nhân viên/nhóm chỉ đạt tối đa `1.000` hiệu dụng; giới hạn 6 depot/nhóm đạt tối đa `300`; chấp nhận mức chênh 6 điểm (`859`/nhóm) với 20 nhân viên/nhóm cần $m \ge 299$ yêu cầu/người ($\text{DE} = 6,96$).
 - Hoàn thiện 5 câu kiểm tra D2 ("tách được tác động"), tính tỉ lệ `mo_lai_trong_7_ngay` hiện tại (`4,25%` toàn mẫu; `3,97%` trong phạm vi `noi_dia` + `hang_nang`), và điền đầy đủ các trường cùng 3 luật dừng đủ 4 vế trong `report/team/pilot_plan.yaml`.
 
 ## 4. Bằng chứng
 
-- Nhánh làm việc: `nguyen/pilot-plan`.
-- File đã hoàn thiện: `report/team/pilot_plan.yaml` (không còn dấu `?` ngoài dòng chú thích, đã kiểm tra đọc bằng `yaml.safe_load`).
-- (Cập nhật link PR/commit và phần `src/lab13.py` sau khi PR phần A được merge và mở PR lên `main`.)
+- Nhánh làm việc: `nguyen/pilot_plan`.
+- File đã hoàn thiện: `src/lab13.py` (phần D1), `report/team/pilot_plan.yaml` (không còn dấu `?` ngoài dòng chú thích, đã kiểm tra đọc bằng `yaml.safe_load`).
+- Đã kiểm tra cú pháp `src/lab13.py` (`py_compile`) và đối chiếu số liệu A2, D1 trực tiếp từ CSV.
 
 ## 5. Công cụ AI đã dùng
 
