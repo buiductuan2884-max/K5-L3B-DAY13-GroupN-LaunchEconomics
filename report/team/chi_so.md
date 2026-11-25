@@ -22,6 +22,7 @@ Chỉ số chính trong đợt chạy thử là 82,83%. Đợt chạy thử khô
 | `staff_review_decision` | Nhân viên | giu / sua / bo, phut_xem_lai (đo thật), trace_id | Khi nhân viên bấm gửi, sửa hoặc bỏ |
 | `staff_rework_completed` | Nhân viên | phut_lam_lai, ly_do, trace_id | Khi làm lại xong |
 | `refund_ledger_write` | Dịch vụ sổ cái | idempotency_key, so_tien, ket_qua, trace_id | Khi ghi sổ hoàn tiền |
+| `refund_bank_rejected` | Cổng ngân hàng | ma_loi, so_tai_khoan_hop_le, trace_id | Khi ngân hàng từ chối lệnh hoàn |
 | `handoff_to_staff` | Agent | reason, tom_tat, trace_id | Khi chuyển nhân viên |
 | `ticket_closed` | Hệ thống ticket | closed_at, trace_id | Khi đóng yêu cầu |
 | `ticket_reopened` | Khách | reopened_at, reason, trace_id | Khi khách mở lại |
