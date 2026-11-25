@@ -4,7 +4,7 @@
 
 - Họ tên: Khương Hoàng Nguyên
 - MSSV: 2A202603987
-- Email: (cập nhật nếu cần)
+- Email: 26ai.nguyenkh@vinuni.edu.vn
 - GitHub: `NguyenGL03`
 - Vai trong nhóm: Người kiểm số (Nhiệm vụ D & tính tay đối chiếu A2)
 
@@ -38,9 +38,9 @@ Từ dữ liệu `src/logix_runs.csv` (1.624 lần chạy) và `src/logix_reques
 
 ## 4. Bằng chứng
 
-- Nhánh làm việc: `nguyen/pilot_plan`.
-- File đã hoàn thiện: `src/lab13.py` (phần D1), `report/team/pilot_plan.yaml` (không còn dấu `?` ngoài dòng chú thích, đã kiểm tra đọc bằng `yaml.safe_load`).
-- Đã kiểm tra cú pháp `src/lab13.py` (`py_compile`) và đối chiếu số liệu A2, D1 trực tiếp từ CSV.
+- PR #3: https://github.com/buiductuan2884-max/K5-L3B-DAY13-GroupN-LaunchEconomics/pull/3 (đã merge vào `main` tại commit `725ad8b`).
+- File đã hoàn thiện và chạy kiểm tra trên `main`: `src/lab13.py` (phần D1), `report/team/pilot_plan.yaml` (không còn dấu `?` ngoài dòng chú thích, đã kiểm tra đọc bằng `yaml.safe_load`).
+- Đã chạy toàn bộ `python lab13.py` trên nhánh `main`, tất cả các phần A1, A2, A3, A4, B1-B4, D1, D3 đều chạy thông suốt và đạt tiêu chuẩn.
 
 ## 5. Công cụ AI đã dùng
 
@@ -49,5 +49,5 @@ Từ dữ liệu `src/logix_runs.csv` (1.624 lần chạy) và `src/logix_reques
 
 ## 6. Tự đánh giá
 
-- Hoàn thành đúng tiến độ các phần việc không phụ thuộc (đối chiếu A2, hoàn thiện `report/team/pilot_plan.yaml`, lập báo cáo cá nhân).
-- Sẵn sàng `git pull` phần A ngay khi được merge để bổ sung nốt code D1 vào `src/lab13.py` và mở PR hoàn chỉnh.
+- Hoàn thành đầy đủ và đúng hạn toàn bộ phần việc được giao: đối chiếu A2, viết code D1 trong `src/lab13.py`, hoàn thiện `report/team/pilot_plan.yaml` và hỗ trợ thông tin kế hoạch pilot cho báo cáo chung của nhóm.
+- Mọi nội dung đã được merge vào `main` và kiểm tra chéo không có lỗi kỹ thuật.
