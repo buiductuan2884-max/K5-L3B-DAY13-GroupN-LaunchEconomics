@@ -120,7 +120,51 @@ if __name__ == '__main__':
         tong_viec = pham_vi['cps'] + co_dinh
         print(f'{nhan:20s} {viec:8,.0f} việc/tháng  cố định {co_dinh:6,.0f} đ/việc  '
               f'cộng cố định {tong_viec:6,.0f} đ = {tong_viec / BASELINE:.2f}× [simulated]')
-    # TODO CP2 · Nhiệm vụ B: đổi từng yếu tố, ghi vào bảng độ nhạy.
+
+    # Nhiệm vụ B1: đổi từng yếu tố, mỗi kịch bản là một lần gọi mo_hinh
+    goc = ket_qua['cps']
+    kich_ban = {
+        'Giá token gấp đôi':      dict(gia_vao=52, gia_ra=260),
+        'Giá token giảm một nửa': dict(gia_vao=13, gia_ra=65),
+        'Xem lại gấp đôi':        dict(he_so_xem_lai=2),
+        'Xem lại giảm một nửa':   dict(he_so_xem_lai=0.5),
+        'Làm lại gấp đôi':        dict(he_so_lam_lai=2),
+        'Làm lại giảm một nửa':   dict(he_so_lam_lai=0.5),
+        'Lương tăng 25%':         dict(luong_phut=2500),
+        'Tối đa 2 lần chạy':      dict(max_lan_chay=2),
+        'Chỉ 1 lần chạy':         dict(max_lan_chay=1),
+        # B2: đổi một cặp cùng lúc
+        'B2 · Token x2 + xem lại x2': dict(gia_vao=52, gia_ra=260, he_so_xem_lai=2),
+    }
+    print(f'\nB1 · Độ nhạy (cps [simulated], gốc {goc:,.0f} đ)')
+    for ten, kw in kich_ban.items():
+        kq = mo_hinh(runs, reqs, **kw)
+        print(f"{ten:28s} {kq['cps']:8,.0f} đ {(kq['cps'] / goc - 1) * 100:+6.1f}%  ({kq['thanh_cong']} thành công)")
+
+    # Nhiệm vụ B3: chi phí cả hệ thống = trợ lý + 12.000 đ cho mỗi yêu cầu nhân viên phải làm thay
+    print('\nB3 · Giới hạn   tổng trợ lý [sim]  không thành công  cả hệ thống [sim]  cps [sim]')
+    for gioi_han in [1, 2, 3]:
+        kq = mo_hinh(runs, reqs, max_lan_chay=gioi_han)
+        khong = len(reqs) - kq['thanh_cong']
+        print(f"{gioi_han} lần {kq['tong']:22,.0f} {khong:17d} {kq['tong'] + khong * BASELINE:18,.0f} {kq['cps']:10,.0f}")
+
+    # Nhiệm vụ B4: noi_dia + hang_nang, nhân viên xem lại 100% (5 phút mỗi yêu cầu có lần chạy ok)
+    pv = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])]
+    runs_pv = runs[runs['request_id'].isin(pv['request_id'])]
+    so_xem = runs_pv.loc[runs_pv['status'] == 'ok', 'request_id'].nunique()
+    so_lam_lai = (pv['ket_qua'] == 'lam_lai').sum()
+    token_tool = (runs_pv['tokens_in'] / 1000 * GIA_VAO + runs_pv['tokens_out'] / 1000 * GIA_RA
+                  + runs_pv['tool_calls'] * GIA_TOOL).sum()
+    so_tc = (pv['ket_qua'] == 'thanh_cong').sum()
+    phut_lam_lai_tb = reqs.loc[reqs['ket_qua'] == 'lam_lai', 'phut_lam_lai_simulated'].mean()
+    print(f'\nB4 · Xem lại 100%: {len(pv)} yêu cầu, {so_xem} được xem lại × 5 phút, '
+          f'{so_lam_lai} ca làm lại, token + tool {token_tool:,.0f} đ, {so_tc} thành công')
+    for phut_lam_lai in [9, phut_lam_lai_tb]:
+        tien_lam_lai = so_lam_lai * phut_lam_lai * LUONG_PHUT
+        tong = so_xem * 5 * LUONG_PHUT + tien_lam_lai + token_tool
+        hoa_von = (BASELINE * so_tc - token_tool - tien_lam_lai) / (so_xem * LUONG_PHUT)
+        print(f'Làm lại {phut_lam_lai:4.1f} phút/ca: tổng {tong:,.0f} đ → {tong / so_tc:,.0f} đ = '
+              f'{tong / so_tc / BASELINE:.2f}× [simulated]; hoà vốn khi xem lại ≤ {hoa_von:.1f} phút')
 
     # Nhiệm vụ D · Cỡ mẫu và kiểm tra ngưỡng an toàn (CP4)
     from statistics import NormalDist
