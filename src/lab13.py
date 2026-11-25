@@ -121,6 +121,47 @@ if __name__ == '__main__':
         print(f'{nhan:20s} {viec:8,.0f} việc/tháng  cố định {co_dinh:6,.0f} đ/việc  '
               f'cộng cố định {tong_viec:6,.0f} đ = {tong_viec / BASELINE:.2f}× [simulated]')
     # TODO CP2 · Nhiệm vụ B: đổi từng yếu tố, ghi vào bảng độ nhạy.
-    # TODO CP4 · Nhiệm vụ D: cỡ mẫu.
-    #   from statsmodels.stats.proportion import proportion_effectsize
-    #   from statsmodels.stats.power import NormalIndPower
+
+    # Nhiệm vụ D · Cỡ mẫu và kiểm tra ngưỡng an toàn (CP4)
+    from statistics import NormalDist
+    try:
+        from statsmodels.stats.proportion import proportion_effectsize
+        from statsmodels.stats.power import NormalIndPower
+        _co_statsmodels = True
+    except ImportError:
+        _co_statsmodels = False
+
+    def co_mau(p1, p2, alpha=0.05, power=0.80):
+        """Cỡ mẫu mỗi nhóm khi so hai tỉ lệ p1, p2."""
+        za = NormalDist().inv_cdf(1 - alpha / 2)
+        zb = NormalDist().inv_cdf(power)
+        pb = (p1 + p2) / 2
+        return math.ceil((za * math.sqrt(2 * pb * (1 - pb))
+                          + zb * math.sqrt(p1 * (1 - p1) + p2 * (1 - p2))) ** 2 / (p2 - p1) ** 2)
+
+    p1, icc = 0.70, 0.02
+    n_5pt = co_mau(p1, 0.75)
+    de_75 = 1 + (75 - 1) * icc
+    n_nv_75 = math.ceil(n_5pt * de_75)
+    max_20nv = 20 / icc
+    max_6depot = 6 / icc
+    n_6pt = co_mau(p1, 0.76)
+    m_min_6pt = math.ceil(n_6pt * (1 - icc) / (20 - n_6pt * icc))
+    de_6pt = 1 + (m_min_6pt - 1) * icc
+
+    print('\nD1 · Cỡ mẫu (baseline 0,70; alpha 0,05; power 0,80; ICC 0,02)')
+    print(f'a) Theo yêu cầu (+5 điểm):          {n_5pt:,} yêu cầu/nhóm')
+    print(f'b) Theo nhân viên (m=75, DE={de_75:.2f}): {n_nv_75:,} yêu cầu/nhóm (~{math.ceil(n_nv_75 / 75)} nhân viên/nhóm > 40)')
+    print(f'c) Tối đa với 20 nhân viên/nhóm:    {max_20nv:,.0f} hiệu dụng (< {n_5pt:,}: không đạt)')
+    print(f'd) Tối đa với 6 depot/nhóm:         {max_6depot:,.0f} hiệu dụng (< {n_5pt:,}: không đạt)')
+    print(f'e) Mức chênh 6 điểm ({n_6pt}/nhóm), 20 nhân viên/nhóm: cần m >= {m_min_6pt} yêu cầu/người (DE={de_6pt:.2f})')
+    if _co_statsmodels:
+        pw_5pt = NormalIndPower().power(effect_size=proportion_effectsize(0.75, p1), nobs1=n_6pt, alpha=0.05)
+        print(f'   Power thực tế tại n={n_6pt} nếu tác động thật chỉ 5 điểm: {pw_5pt:.2f}')
+
+    mo_lai_all = reqs['mo_lai_trong_7_ngay'].mean()
+    pham_vi_d = reqs[reqs['loai'].isin(['noi_dia', 'hang_nang'])]
+    mo_lai_pv = pham_vi_d['mo_lai_trong_7_ngay'].mean()
+    print(f"D3 · Tỉ lệ mo_lai_trong_7_ngay hiện tại: toàn mẫu {mo_lai_all:.2%} "
+          f"({reqs['mo_lai_trong_7_ngay'].sum()}/{len(reqs)}), "
+          f"phạm vi pilot {mo_lai_pv:.2%} ({pham_vi_d['mo_lai_trong_7_ngay'].sum()}/{len(pham_vi_d)})")
