@@ -11,7 +11,7 @@
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Bùi Đức Tuấn | 2A2020603902 | | buiductuan2884-max | Người gắn nhãn 2, kiêm giữ hồ sơ (nhóm trưởng) |
+|   1 | Bùi Đức Tuấn | 2A2020603902 | buiductuan2884@gmail.com | buiductuan2884-max | Người gắn nhãn 2, kiêm giữ hồ sơ (nhóm trưởng) |
 |   2 | Nguyễn Đình Minh | 2A202603898 | | MinhNGD76 | Người viết code |
 |   3 | Khương Hoàng Nguyên | 2A202603987 | 26ai.nguyenkh@vinuni.edu.vn | NguyenGL03 | Người kiểm số |
 |   4 | | | | NMCcg | Người gắn nhãn 1 |
