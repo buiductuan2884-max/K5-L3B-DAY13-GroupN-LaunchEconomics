@@ -52,4 +52,20 @@
 
 ## 6. Tự đánh giá
 
-[Phần này nhóm viên tự viết.]
+**Làm tốt:**
+
+- Nhiệm vụ A đã merge vào `main`. Số A2 khớp với phép tính tay của Khương Hoàng Nguyên (tổng 4.373.585 đ, 978 việc thành công, 4.472 đ mỗi việc). Chạy lại `lab13.py` hôm nay cho cùng kết quả, A2 đạt sai số dưới 2%.
+- Các số B1–B4 khớp với hướng dẫn: 4.237 đ (giới hạn 2 lần), 6.901.220 đ (rẻ nhất cho công ty), 11.743 đ và 12.414 đ (xem lại 100%).
+- Mỗi cặp "gấp đôi / giảm một nửa" được kiểm tra bằng cách so với nửa mức tăng. Số lệch 1 đ ở B4 (12.415 so với 12.414) đã ghi chú là do làm tròn.
+- Mọi số lấy từ cột mô phỏng đều có nhãn `[simulated]`.
+
+**Còn thiếu:**
+
+- Nhiệm vụ B vẫn ở nhánh `minh` (commit `e322432`), chưa merge. Mục 4 còn placeholder "[điền hash commit sau khi commit]", cần điền `e322432`.
+- `lab13.py` sẽ có lỗi `UnicodeEncodeError` khi chạy trên console Windows mặc định (cp1252). Phải đặt `PYTHONIOENCODING=utf-8` thì máy chấm mới có thể tránh được lỗi tương tự.
+- Email ở mục 1 vẫn là "[điền]".
+
+**Rút kinh nghiệm:**
+
+- Đối chiếu từng nhóm số với hướng dẫn ngay sau khi chạy, không dồn lại cuối.
+- Script có in tiếng Việt thì nên đặt encoding UTF-8 ngay từ đầu, để chạy được trên mọi máy.

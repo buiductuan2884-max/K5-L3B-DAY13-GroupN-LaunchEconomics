@@ -2,19 +2,19 @@
 
 ## Thông tin nhóm
 
-- Tên nhóm:
-- Lớp: L3A hoặc L3B
-- Repo nhóm: `K5-L3A-DAY13-TenNhom-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt:
+- Tên nhóm: GroupN
+- Lớp: L3B
+- Repo nhóm: `K5-L3B-DAY13-GroupN-LaunchEconomics` (xem [SUBMISSION.md](SUBMISSION.md))
+- URL repo, nhánh nộp, commit chốt: https://github.com/buiductuan2884-max/K5-L34-Day13-GroupN-LaunchEconomics · `main` · ...
 
 ## Thành viên
 
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
-|   1 |        |      |       |        |         |
-|   2 |        |      |       |        |         |
-|   3 |        |      |       |        |         |
-|   4 |        |      |       |        |         |
+|   1 | Bùi Đức Tuấn | 2A2020603902 | | buiductuan2884-max | Người gắn nhãn 2, kiêm giữ hồ sơ (nhóm trưởng) |
+|   2 | | | | MinhNGD76 | Người viết code |
+|   3 | | | | NguyenGL03 | Người kiểm số |
+|   4 | | | | NMCcg | Người gắn nhãn 1 |
 
 Bốn vai của lab:
 
