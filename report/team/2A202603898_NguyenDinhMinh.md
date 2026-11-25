@@ -1,7 +1,5 @@
 # Báo cáo cá nhân — MinhNGD76
 
-> Bản nháp. Đổi tên file thành `MSSV_HoTenKhongDau.md` sau khi điền MSSV và họ tên. Giữ nguyên file mẫu `MSSV_HoTen.md`.
-
 ## 1. Thông tin thành viên
 
 - Họ tên: Nguyễn Đình Minh
@@ -48,7 +46,6 @@
   - Chạy `python lab13.py` và đối chiếu từng số với hướng dẫn, lệch không quá 2%.
   - Kiểm tra cặp "giảm một nửa" bằng nửa mức tăng của "gấp đôi".
   - Tự tính tay một số để đối chiếu với code. Ví dụ: chi phí mỗi việc thành công = (token + tool + xem lại + làm lại) ÷ 978, cho ra 4.472 đ.
-  - Kiểm tra bằng `grep` rằng không có từ "production" trong `report/team`.
 
 ## 6. Tự đánh giá
 
